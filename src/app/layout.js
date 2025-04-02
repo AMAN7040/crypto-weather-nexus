@@ -1,15 +1,5 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import RootLayout from "./components/Rootlayout";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "CryptoWeather Nexus | Real-time Crypto & Weather Data",
@@ -19,13 +9,11 @@ export const metadata = {
     "cryptocurrency, weather, Bitcoin, Ethereum, real-time data, forecast",
 };
 
-export default function RootLayout({ children }) {
+export default function Layout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body>
+        <RootLayout>{children}</RootLayout> {/* Use Client Component */}
       </body>
     </html>
   );
