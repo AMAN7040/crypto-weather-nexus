@@ -1,24 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-const HamburgerIcon = ({ size = 22 }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    width={size}
-    height={size}
-    className="cursor-pointer hover:bg-gray-700 rounded-md transition"
-  >
-    <path
-      d="M3 6h18M3 12h18M3 18h18"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
-);
+import Hamburger from "./Hamburger";
 
 const NotificationIcon = ({ size = 22 }) => (
   <div className="relative">
@@ -38,7 +21,7 @@ const NotificationIcon = ({ size = 22 }) => (
   </div>
 );
 
-const Navbar = ({ toggleSidebar }) => {
+const Navbar = () => {
   return (
     <header className="shadow-md z-50 w-full flex justify-center h-16">
       <nav className="w-[92%] flex items-center justify-between py-4  ">
@@ -77,13 +60,7 @@ const Navbar = ({ toggleSidebar }) => {
 
         <div className="flex items-center justify-between w-1/7 md:w-1/3 md:justify-end">
           <NotificationIcon />
-          <button
-            className="md:hidden"
-            aria-label="Open sidebar"
-            onClick={toggleSidebar}
-          >
-            <HamburgerIcon />
-          </button>
+          <Hamburger />
         </div>
       </nav>
     </header>
