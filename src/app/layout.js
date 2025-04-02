@@ -1,4 +1,4 @@
-import RootLayout from "./components/Rootlayout";
+import Navbar from "./components/Navbar";
 import "./globals.css";
 
 export const metadata = {
@@ -13,7 +13,8 @@ export default function Layout({ children }) {
   return (
     <html lang="en">
       <body>
-        <RootLayout>{children}</RootLayout> {/* Use Client Component */}
+        <Navbar />
+        <main>{children}</main>
       </body>
     </html>
   );
