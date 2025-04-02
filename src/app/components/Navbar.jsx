@@ -26,7 +26,7 @@ const Navbar = () => {
     <header className="shadow-md z-50 w-full flex justify-center h-16">
       <nav className="w-[92%] flex items-center justify-between py-4  ">
         <div className="my-auto w-1/3">
-          <Link href="/" aria-label="Home">
+          <Link href="/" aria-label="Home" className="text-white flex items-center gap-2 text-[max(2.2vw,25px)]">
             <Image
               src="/CWN_Logo.png"
               alt="Logo"
@@ -34,6 +34,7 @@ const Navbar = () => {
               height={46}
               priority
             />
+           ℂ𝕎ℕ
           </Link>
         </div>
 
