@@ -33,7 +33,7 @@ const Navbar = () => {
             DASHBOARD
           </Link>
           <Link
-            href="/city"
+            href="/cities"
             className="hover:text-white active:text-red-600  transition-all font-medium"
           >
             CITIES
