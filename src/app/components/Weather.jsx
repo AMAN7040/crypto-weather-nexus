@@ -21,7 +21,7 @@ const Weather = ({ initialData }) => {
 
     const interval = setInterval(() => {
       dispatch(fetchWeatherData());
-    }, 10800000);
+    }, 108000000);
 
     return () => clearInterval(interval);
   }, [dispatch]);
