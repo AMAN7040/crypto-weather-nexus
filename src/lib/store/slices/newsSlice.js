@@ -1,9 +1,30 @@
 import { fetchNews } from "@/app/utils/fetchNews";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+const defaultNews = [
+  {
+    title: "Bitcoin Hits New All-Time High",
+    description:
+      "Bitcoin reaches a new all-time high as institutional adoption increases.",
+    link: "https://example.com/bitcoin-all-time-high",
+  },
+  {
+    title: "Ethereum 2.0 Upgrade: What to Expect",
+    description:
+      "Ethereum's upcoming upgrade promises to reduce gas fees and improve scalability.",
+    link: "https://example.com/ethereum-2-0-upgrade",
+  },
+  {
+    title: "Ripple's Latest Legal Battle with SEC",
+    description:
+      "Ripple faces a major legal battle with the SEC over its token classification.",
+    link: "https://example.com/ripple-sec-legal-battle",
+  },
+];
+
 export const fetchNewsData = createAsyncThunk(
   "news/fetchNews",
-  async (_, {getState, rejectWithValue }) => {
+  async (_, { getState, rejectWithValue }) => {
     try {
       const data = await fetchNews();
       const currentData = getState().news.headlines;
@@ -25,7 +46,7 @@ export const fetchNewsData = createAsyncThunk(
 const newsSlice = createSlice({
   name: "news",
   initialState: {
-    headlines: [],
+    headlines: defaultNews,
     loading: false,
     error: null,
   },
