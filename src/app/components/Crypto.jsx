@@ -18,7 +18,7 @@ const Crypto = ({ coins }) => {
 
     const interval = setInterval(() => {
       dispatch(fetchCoinData());
-    }, 60000); 
+    }, 60000000); 
 
     return () => clearInterval(interval);
   }, [dispatch]);
