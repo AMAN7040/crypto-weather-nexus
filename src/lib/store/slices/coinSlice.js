@@ -2,6 +2,33 @@ import { fetchCoins } from "@/app/utils/fetchCoins";
 
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
+const defaultCoins = [
+  {
+    id: "bitcoin",
+    name: "Bitcoin",
+    symbol: "BTC",
+    price: 35000,
+    change: 2.5,
+    marketCap: 650000000000,
+  },
+  {
+    id: "ethereum",
+    name: "Ethereum",
+    symbol: "ETH",
+    price: 2000,
+    change: 1.8,
+    marketCap: 240000000000,
+  },
+  {
+    id: "ripple",
+    name: "Ripple",
+    symbol: "XRP",
+    price: 1.0,
+    change: -0.5,
+    marketCap: 50000000000,
+  },
+];
+
 export const fetchCoinData = createAsyncThunk(
   "coinSlice/fetchCoins",
   async (_, { getState, rejectWithValue }) => {
@@ -25,7 +52,7 @@ export const fetchCoinData = createAsyncThunk(
 const coinSlice = createSlice({
   name: "coins",
   initialState: {
-    data: [],
+    data: defaultCoins,
     loading: false,
     error: null,
   },
