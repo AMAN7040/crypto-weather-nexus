@@ -17,7 +17,7 @@ const Crypto = ({ coins }) => {
 
     const interval = setInterval(() => {
       dispatch(fetchCoinData());
-    }, 60000000);
+    }, 600000);
 
     return () => clearInterval(interval);
   }, [dispatch]);
@@ -39,7 +39,7 @@ const Crypto = ({ coins }) => {
           ))}
         </div>
         
-        {/* FavoriteCard Container */}
+      
         <div className="flex flex-col border border-gray-200 rounded-md flex-grow">
           <FavoriteCard />
         </div>
