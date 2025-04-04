@@ -15,7 +15,7 @@ const News = ({ newsData }) => {
 
     const interval = setInterval(() => {
       dispatch(fetchNewsData());
-    }, 800000);
+    }, 80000000);
     return () => clearInterval(interval);
   }, [dispatch]);
 
@@ -38,7 +38,9 @@ const News = ({ newsData }) => {
             <h3 className="text-white text-lg md:text-xl font-semibold truncate w-full ">
               {newsItem.title}
             </h3>
-            <p className="text-gray-300 mt-2 truncate w-full">{newsItem.description}</p>
+            <p className="text-gray-300 mt-2 truncate w-full">
+              {newsItem.description}
+            </p>
             <a
               href={newsItem.link}
               target="_blank"
