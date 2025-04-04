@@ -6,54 +6,74 @@ import { useEffect, useRef } from "react";
 
 const TRACKED_ASSETS = ["bitcoin", "ethereum"];
 const THRESHOLD_PERCENTAGE = 0.001;
+const RECONNECT_DELAY = 10000;
 
 export const useCryptoWebSockets = () => {
   const prevPrices = useRef({});
+  const wsRef = useRef(null);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    let retryTimeout;
 
-    const ws = new WebSocket(
-      `wss://ws.coincap.io/prices?assets=${TRACKED_ASSETS.join(",")}`
-    );
+    const connectWebSocket = () => {
+      if (wsRef.current && wsRef.current.readyState !== WebSocket.CLOSED) {
+        return;
+      }
 
-    ws.onopen = () => {};
+      const ws = new WebSocket(
+        `wss://ws.coincap.io/prices?assets=${TRACKED_ASSETS.join(",")}`
+      );
+      wsRef.current = ws;
 
-    ws.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
+      ws.onopen = () => {};
 
-        Object.entries(data).forEach(([symbol, priceStr]) => {
-          const newPrice = parseFloat(priceStr);
-          if (isNaN(newPrice)) return;
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
 
-          const prevPrice = prevPrices.current[symbol];
-          const hasMoved =
-            prevPrice &&
-            Math.abs(newPrice - prevPrice) / prevPrice >
-              THRESHOLD_PERCENTAGE / 100;
+          Object.entries(data).forEach(([symbol, priceStr]) => {
+            const newPrice = parseFloat(priceStr);
+            if (isNaN(newPrice)) return;
 
-          if (hasMoved) {
-            const payload = {
-              type: "price_alert",
-              message: `${symbol.toUpperCase()} moved >${THRESHOLD_PERCENTAGE}% to $${newPrice.toFixed(2)}`,
-              timestamp: Date.now(),
-            };
-            dispatch(addNotification(payload));
-          }
+            const prevPrice = prevPrices.current[symbol];
+            const hasMoved =
+              prevPrice &&
+              Math.abs(newPrice - prevPrice) / prevPrice >
+                THRESHOLD_PERCENTAGE / 100;
 
-          prevPrices.current[symbol] = newPrice;
-        });
-      } catch (err) {}
+            if (hasMoved) {
+              dispatch(
+                addNotification({
+                  type: "price_alert",
+                  message: `${symbol.toUpperCase()} moved >${THRESHOLD_PERCENTAGE}% to $${newPrice.toFixed(2)}`,
+                  timestamp: Date.now(),
+                })
+              );
+            }
+
+            prevPrices.current[symbol] = newPrice;
+          });
+        } catch (error) {}
+      };
+
+      ws.onerror = (err) => {
+        console.error(err?.message || err);
+        ws.close();
+      };
+
+      ws.onclose = (event) => {
+        retryTimeout = setTimeout(connectWebSocket, RECONNECT_DELAY);
+      };
     };
 
-    ws.onerror = (err) => {};
-
-    ws.onclose = (e) => {};
+    connectWebSocket();
 
     return () => {
-      if (ws.readyState === WebSocket.OPEN) ws.close();
+      if (wsRef.current) {
+        wsRef.current.close();
+      }
+      clearTimeout(retryTimeout);
     };
   }, [dispatch]);
 };
