@@ -2,6 +2,10 @@
 
 🚀 A multi-page dashboard combining real-time **weather updates, cryptocurrency prices, and news**, with WebSocket-based live notifications.
 
+## 🚀 Live Demo
+
+🔗 **Live App:** [CryptoWeather Nexus](https://crypto-weather-nexus-seven.vercel.app/)
+
 ## 🔹 Features
 
 ✅ **Real-time crypto price updates** (WebSocket)  
