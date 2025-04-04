@@ -18,7 +18,7 @@ const NotificationIcon = ({ size = 22, length, onClick }) => (
     >
       <path d="M12 2C8.69 2 6 4.69 6 8v5H4v2h16v-2h-2V8c0-3.31-2.69-6-6-6zM10 19a2 2 0 104 0h-4z" />
     </svg>
-    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-3.5 h-3.5 flex items-center justify-center rounded-full">
+    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-3.5 h-3.5 flex items-center justify-center rounded-full">
       {length}
     </span>
   </div>
