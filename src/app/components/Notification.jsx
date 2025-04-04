@@ -25,7 +25,7 @@ const NotificationIcon = ({ size = 22, length, onClick }) => (
 );
 
 const Notification = () => {
-  //   useCryptoWebSockets();
+  useCryptoWebSockets();
   useWeatherAlerts();
 
   const notifications = useAppSelector((state) => state.notifications.data);
