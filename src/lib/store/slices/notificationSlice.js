@@ -7,7 +7,6 @@ const notificationSlice = createSlice({
   },
   reducers: {
     addNotification: (state, action) => {
-      console.log("🔵 Notification reducer called:", action.payload);
       state.data.unshift(action.payload);
       if (state.data.length > 10) {
         state.data = state.data.slice(0, 10);
