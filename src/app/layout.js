@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import "./globals.css";
+import StoreProvider from "./StoreProvider";
 
 export const metadata = {
   title: "CryptoWeather Nexus | Real-time Crypto & Weather Data",
@@ -13,9 +14,11 @@ export default function Layout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <main>{children}</main>
+        <StoreProvider>
+          <Navbar />
+          <main>{children}</main>
+        </StoreProvider>
       </body>
     </html>
   );
-}
+} 
