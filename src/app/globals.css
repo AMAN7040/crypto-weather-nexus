@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@property --border-angle {
+  inherits: false;
+  initial-value: 360deg;
+  syntax: "<angle>";
+}
+
 @theme {
   --font-primary: "Inter", sans-serif;
   --font-secondary: "Poppins", sans-serif;
@@ -11,6 +17,55 @@
 
   --color-warning: #f59e0b;
   --color-error: #ef4444;
+
+  --animate-fade-in-left: fade-in-left 0.8s ease-out forwards;
+  --animate-fade-in-right: fade-in-right 0.8s ease-out forwards;
+  --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
+  --animate-border: border-spin 4s linear infinite;
+
+  @keyframes fade-in-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-5rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-in-right {
+    0% {
+      opacity: 0;
+      transform: translateX(5rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(5rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes border-spin {
+    from {
+      --border-angle: 0deg;
+    }
+
+    ,
+    to {
+      --border-angle: 360deg;
+    }
+  }
 }
 
 :root {
@@ -38,7 +93,6 @@ body {
 
   ::-webkit-scrollbar-track {
     background: #f1f1f1;
-   
   }
 
   ::-webkit-scrollbar-thumb {
