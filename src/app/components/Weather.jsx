@@ -42,9 +42,9 @@ const Weather = ({ initialData }) => {
   
 
   return (
-    <section className="col-span-1 row-span-1 sm:col-span-1 sm:row-span-3 bg-secondary border border-gray-800 sm:min-w-[280px] rounded-lg gap-y-2">
-      <h2 className="text-xl font-bold text-white text-left p-6">{greet}</h2>
-      <div className="grid grid-rows-1 grid-cols-3 sm:grid-cols-1 sm:grid-row-3 gap-2 sm:gap-3 px-2 sm:px-4">
+    <section className="col-span-1 row-span-1 sm:col-span-1 sm:row-span-3 bg-secondary border border-gray-800 sm:min-w-[280px] rounded-lg gap-y-2 animate-fade-in-right delay-500">
+      <h2 className="text-xl font-bold text-white text-left p-6 animate-fade-in-right delay-500">{greet}</h2>
+      <div className="grid grid-rows-1 grid-cols-3 sm:grid-cols-1 sm:grid-row-3 gap-2 sm:gap-3 px-2 sm:px-4 animate-fade-in-right delay-600">
         {data?.map((city) => (
           <WeatherCard city={city} date={formattedDate} key={city?.name} />
         ))}
