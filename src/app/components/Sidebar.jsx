@@ -23,14 +23,14 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
     <>
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-md transition-opacity duration-300 
+        className={`fixed z-10 inset-0 bg-black/50 backdrop-blur-md transition-opacity duration-300 
           ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} md:hidden`}
         onClick={closeSidebar}
       ></div>
 
       {/* Sidebar Panel */}
       <aside
-        className={`fixed top-0 right-0 h-screen w-[80vw] sm:w-[60vw] md:w-[40vw] lg:w-[30vw] 
+        className={`fixed z-10 top-0 right-0 h-screen w-[80vw] sm:w-[60vw] md:w-[40vw] lg:w-[30vw] 
             flex flex-col gap-10 bg-[#121212] text-white shadow-2xl border-l border-gray-800 
             transition-transform ease-in-out duration-300 rounded-l-2xl
             ${isOpen ? "translate-x-0" : "translate-x-full"}`}
@@ -50,7 +50,7 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
         <nav className="flex flex-col w-full gap-4 pt-5 px-4  font-medium">
           {[
             { name: "Dashboard", href: "/" },
-            { name: "Cities", href: "/city" },
+            { name: "Cities", href: "/cities" },
             { name: "Crypto", href: "/crypto" },
           ].map(({ name, href }) => (
             <Link
