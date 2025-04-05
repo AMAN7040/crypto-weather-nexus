@@ -27,9 +27,9 @@ const News = ({ newsData }) => {
   }
 
   return (
-    <div className="col-span-1 sm:col-span-2 row-span-1 bg-secondary p-4 rounded-lg">
-      <h2 className="text-white text-2xl p-2">𝐿𝒶𝓉𝑒𝓈𝓉 𝒩𝑒𝓌𝓈</h2>
-      <div className="grid grid-cols-2 gap-2 min-h-[200px]">
+    <div className="col-span-1 sm:col-span-2 row-span-1 bg-secondary p-4 rounded-lg animate-fade-in-up delay-300">
+      <h2 className="text-white text-2xl p-2 animate-fade-in-up delay-400">𝐿𝒶𝓉𝑒𝓈𝓉 𝒩𝑒𝓌𝓈</h2>
+      <div className="grid grid-cols-2 gap-2 min-h-[200px] animate-fade-in-up delay-500">
         {headlines.map((newsItem) => (
           <div
             key={newsItem.title}
